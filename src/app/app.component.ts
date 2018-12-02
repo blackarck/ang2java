@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ang2php';
   pressmessage ="";
+  nameFormControl = new FormControl('', Validators.required);
 
   constructor() {
     console.log("This is constructor");
@@ -18,7 +20,13 @@ export class AppComponent {
   }
 
  gotophp(){
+   //only pass to java if value is present
+if(! this.nameFormControl.hasError('required')){
     console.log("Go to php");
-    this.pressmessage="Going to fetch data from php";
+    this.pressmessage="Going to fetch data from java";
+  }else{
+    this.nameFormControl.markAsTouched();
+
+  }
   }
 }

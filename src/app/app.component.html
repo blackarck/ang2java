@@ -3,7 +3,7 @@
 
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span>Custom Toolbar</span>
+      <span>Lottery web app</span>
     </mat-toolbar-row>
   </mat-toolbar>
 
@@ -24,15 +24,19 @@
         </mat-card-header>
         <mat-card-content>
           <mat-form-field>
-            <input matInput type="text" placeholder="Name" name="fname">
+            <input matInput type="text" placeholder="Name" name="fname"  [formControl]="nameFormControl">
+            <mat-error *ngIf="nameFormControl.hasError('required')">
+       name is <strong>required</strong>
+     </mat-error>
+
+
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
           <button mat-flat-button color="primary" (click)="gotophp()">Submit</button>
         </mat-card-actions>
-
+        <mat-card-footer>
+          {{pressmessage}}
+      </mat-card-footer>
       </mat-card>
     </div>
-    <div><span>
-      {{pressmessage}}
-    </span>  </div>
