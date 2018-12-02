@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ang2php';
+  pressmessage ="";
+
+  constructor() {
+    console.log("This is constructor");
+  }
+
+  ngOnInit(){
+    console.log("This is on ng init");
+  }
+
+ gotophp(){
+    console.log("Go to php");
+    this.pressmessage="Going to fetch data from php";
+  }
 }
