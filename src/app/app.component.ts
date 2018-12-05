@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {from} from 'rxjs';
+//import 'rxjs/add/observable/fromPromise';
+
 
 @Component({
   selector: 'app-root',
@@ -19,14 +23,28 @@ export class AppComponent {
     console.log("This is on ng init");
   }
 
- gotophp(){
-   //only pass to java if value is present
-if(! this.nameFormControl.hasError('required')){
-    console.log("Go to php");
-    this.pressmessage="Going to fetch data from java";
-  }else{
-    this.nameFormControl.markAsTouched();
+  gotophp(){
+    //only pass to java if value is present
+    if(! this.nameFormControl.hasError('required')){
+      console.log("Go to php");
+      this.pressmessage="Going to fetch data from java";
 
-  }
+      // Create an Observable out of a promise
+      const data = from(fetch('http://localhost:8080/lottoget'));
+      // Subscribe to begin listening for async result
+      data.subscribe({
+        next(response) {
+
+           console.log("returntxt " + response);
+          //  this.pressmessage= ("return val " + returntxt1);
+          },
+        error(err) { console.error('Error: ' + err); },
+        complete() { console.log('Completed'); }
+      });
+
+    }else{
+      this.nameFormControl.markAsTouched();
+
+    }
   }
 }
