@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormGroup,FormControl, Validators} from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {from} from 'rxjs';
 //import 'rxjs/add/observable/fromPromise';
@@ -17,6 +17,7 @@ export class AppComponent {
   nameFormControl = new FormControl('', Validators.required);
 
 
+
   ngOnInit(){
     console.log("This is on ng init");
   }
@@ -30,25 +31,12 @@ export class AppComponent {
   gotophp(){
     //only pass to java if value is present
     if(! this.nameFormControl.hasError('required')){
-      console.log("Go to php");
+      console.log("Go to php" + this.nameFormControl.value);
       this.pressmessage="Going to fetch data from java";
       let messtxt="";
       // Create an Observable out of a promise
-      const data = from(fetch('http://localhost:8080/lottoget'));
+      const data = from(fetch('http://localhost:8080/api?persname='+this.nameFormControl.value));
       // Subscribe to begin listening for async result
-     /* data.subscribe({
-
-        next(response){
-          response.text().then((text)=>{
-            console.log("text-"+text);
-            this.pressmessage= "return val " + text;
-          });
-        },
-
-        error(err) { console.error('Error: ' + err); },
-        complete() { console.log('Completed'); }
-      });
-      */
       data.subscribe(resp=>{
         let txtmsg=""
         resp.text().then((text)=>{
@@ -57,7 +45,10 @@ export class AppComponent {
             this.pressmessage= "return val " + txtmsg;
         });
 
-      });
+      },
+     err=>{
+       console.log("error "+err);
+     });
     }else{
       this.nameFormControl.markAsTouched();
 

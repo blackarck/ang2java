@@ -24,7 +24,9 @@
         </mat-card-header>
         <mat-card-content>
           <mat-form-field>
-            <input matInput type="text" placeholder="Email" name="emailid"  [formControl]="nameFormControl">
+
+
+            <input matInput type="text" placeholder="Email" [formControl]="nameFormControl">
             <mat-error *ngIf="nameFormControl.hasError('required')">
        Email is <strong>required</strong>
      </mat-error>
