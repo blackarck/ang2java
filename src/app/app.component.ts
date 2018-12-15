@@ -15,8 +15,14 @@ export class AppComponent {
   title = 'ang2php';
   pressmessage ="";
   nameFormControl = new FormControl('', Validators.required);
+  captchaDone:boolean=true;
+ disvalue="disabled";
 
-
+  resolved(captchaResponse: string) {
+         console.log(`Resolved captcha with response ${captchaResponse}:`);
+         this.captchaDone=false;
+         this.disvalue="";
+     }
 
   ngOnInit(){
     console.log("This is on ng init");
@@ -33,7 +39,6 @@ export class AppComponent {
     if(! this.nameFormControl.hasError('required')){
       console.log("Go to php" + this.nameFormControl.value);
       this.pressmessage="Going to fetch data from java";
-      let messtxt="";
       // Create an Observable out of a promise
       const data = from(fetch('http://localhost:8080/api?persname='+this.nameFormControl.value));
       // Subscribe to begin listening for async result

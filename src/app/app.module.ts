@@ -9,6 +9,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { HttpClientModule }    from '@angular/common/http';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { HttpClientModule }    from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    RecaptchaModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
