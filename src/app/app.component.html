@@ -15,7 +15,6 @@
       <span>Lottery web app</span>
     </mat-toolbar-row>
   </mat-toolbar>
-
   <h1>
     Welcome to {{ title }}!
   </h1>
@@ -34,12 +33,10 @@
         <mat-card-content>
           <mat-form-field>
 
-
             <input matInput type="text" placeholder="Email" [formControl]="nameFormControl">
             <mat-error *ngIf="nameFormControl.hasError('required')">
               Email is <strong>required</strong>
             </mat-error>
-
 
           </mat-form-field>
         </mat-card-content>
@@ -47,9 +44,23 @@
           <button mat-flat-button color="primary" [disabled]=captchaDone (click)="gotophp()">Submit</button>
         </mat-card-actions>
         <mat-card-footer>
+          <re-captcha (resolved)="resolved($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
+          {{pressmessage}}
+        </mat-card-footer>
+      </mat-card>
+    </div>
 
-            <re-captcha (resolved)="resolved($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
+    <!--purchased lottery -->
+    <div style="padding-top:10px;">
+      <mat-card class="example-card">
+        <mat-card-header class="card-bgcolor">
+          <mat-card-title style="padding:5px;">Purchased lottery</mat-card-title>
+          <mat-card-subtitle>All lotteries</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
 
+        </mat-card-content>
+        <mat-card-footer>
           {{pressmessage}}
         </mat-card-footer>
       </mat-card>
