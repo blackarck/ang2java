@@ -10,7 +10,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { HttpClientModule }    from '@angular/common/http';
 import { RecaptchaModule } from 'ng-recaptcha';
-
+import { PersistenceModule } from 'angular-persistence';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,9 @@ import { RecaptchaModule } from 'ng-recaptcha';
     FormsModule,
     HttpClientModule,
     RecaptchaModule,
+    PersistenceModule,
+    MatCheckboxModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

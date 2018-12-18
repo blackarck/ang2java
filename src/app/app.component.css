@@ -1,7 +1,15 @@
 .example-card {
-  max-width: 400px;
+  max-width: 350px;
 }
 
 .card-bgcolor {
   background-color: #b1c8ed;
+}
+table {
+  width: 100%;
+}
+p{
+  font-size: 10px;
+  margin-block-end:.2em;
+
 }

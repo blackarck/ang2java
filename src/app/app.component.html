@@ -2,9 +2,9 @@
 <script src="https://www.google.com/recaptcha/api.js?render=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></script>
 <script>
   grecaptcha.ready(function() {
-    console.log(" ready function grecaptcha");
+  //  console.log(" ready function grecaptcha");
     grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', {action: 'homepage'}).then(function(token) {
-      console.log("It worked");
+    //  console.log("It worked");
     });
   });
 </script>
@@ -12,7 +12,7 @@
 
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span>Lottery web app</span>
+      <span>Lottery cloud app</span>
     </mat-toolbar-row>
   </mat-toolbar>
   <h1>
@@ -20,15 +20,15 @@
   </h1>
 
   <div>
-    <span>  Web application using Angular io ( angular material ) as front end and Java Struts as backend.</span>
+    <span>  Web application using Angular io ( angular material ) as front end and Java Spring as backend.</span>
   </div>
   <div>
 
     <div>
       <mat-card class="example-card">
         <mat-card-header class="card-bgcolor">
-          <mat-card-title style="padding:5px;">Buy lottery</mat-card-title>
-          <mat-card-subtitle>lottery form</mat-card-subtitle>
+          <mat-card-title style="padding:5px;">Hello Lotto</mat-card-title>
+
         </mat-card-header>
         <mat-card-content>
           <mat-form-field>
@@ -41,27 +41,66 @@
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
+          <mat-checkbox style="padding-right:10px;" [(ngModel)]="checked" [formControl]="buyCboxControl">Buy New</mat-checkbox>
           <button mat-flat-button color="primary" [disabled]=captchaDone (click)="gotophp()">Submit</button>
         </mat-card-actions>
         <mat-card-footer>
           <re-captcha (resolved)="resolved($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
-          {{pressmessage}}
+          <!--{{pressmessage}} -->
         </mat-card-footer>
       </mat-card>
     </div>
 
     <!--purchased lottery -->
-    <div style="padding-top:10px;">
+    <div style="padding-top:5px;">
       <mat-card class="example-card">
         <mat-card-header class="card-bgcolor">
           <mat-card-title style="padding:5px;">Purchased lottery</mat-card-title>
-          <mat-card-subtitle>All lotteries</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content>
 
+        <mat-card-content>
+          <table mat-table  [dataSource]="dataSource" >
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let dataSource"> {{dataSource.name}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="lottono">
+              <th mat-header-cell *matHeaderCellDef> Lottery# </th>
+              <td mat-cell *matCellDef="let dataSource"> {{dataSource.lottono}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="issuedt">
+              <th mat-header-cell *matHeaderCellDef> Issue Dt </th>
+              <td mat-cell *matCellDef="let dataSource"> {{dataSource.issuedt}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <td mat-cell *matCellDef="let dataSource"> {{dataSource.status}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+<!--
+          <ul>
+    <li *ngFor="let hero of lottoval">
+      {{ hero.name}}
+    </li>
+  </ul>
+-->
         </mat-card-content>
+
         <mat-card-footer>
-          {{pressmessage}}
+          <p>To buy new lotto check 'Buy New' and Submit.</p>
+          <p>To view click on Submit without checking Buy New</p>
+        <!--  {{dataSource}}-->
         </mat-card-footer>
       </mat-card>
     </div>
