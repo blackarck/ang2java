@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {FormGroup,FormControl, Validators} from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { PersistenceService ,StorageType} from 'angular-persistence';
+//import { PersistenceService ,StorageType} from 'angular-persistence';
 import {from} from 'rxjs';
 import {lottoissue} from './lottoissue';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
@@ -38,7 +38,8 @@ export class AppComponent {
   ngOnInit(){
     //console.log("This is on ng init");
   }
-  constructor(private persistenceService: PersistenceService) {
+//  constructor(private persistenceService: PersistenceService) {
+constructor(){
     //console.log("This is constructor");
   }
 
@@ -51,7 +52,7 @@ export class AppComponent {
     this.captchaDone=true;
     this.checked = false;
     if(! this.nameFormControl.hasError('required')){
-      this.persistenceService.set('logid', ""+ this.nameFormControl.value, {type: StorageType.SESSION});
+    //  this.persistenceService.set('logid', ""+ this.nameFormControl.value, {type: StorageType.SESSION});
       //console.log("Go to php-" + this.nameFormControl.value + " buy-"+ this.buyCboxControl.value) ;
       //console.log("Retrieve value " +   this.persistenceService.get('logid',StorageType.SESSION));
       this.pressmessage="Going to fetch data from java";
