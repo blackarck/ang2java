@@ -24,7 +24,7 @@ export class AppComponent {
   disvalue="disabled";
   lottoval:lottoissue[];
   lottostr:String[];
-  displayedColumns: string[] = ['name', 'lottono', 'issuedt', 'status'];
+  //displayedColumns: string[] = ['name', 'lottono', 'issuedt', 'status'];
   dataSource: MatTableDataSource<any>;
  //persistenceService: PersistenceService;
 
@@ -35,6 +35,10 @@ export class AppComponent {
          this.checked = false;
      }
 
+     resolved1=function(){
+       console.log("resolved1"  );
+     }
+
   ngOnInit(){
     //console.log("This is on ng init");
   }
@@ -43,6 +47,9 @@ constructor(){
     //console.log("This is constructor");
   }
 
+captchapress(){
+  console.log(" capctha was pressed");
+}
   callmeAfter(){
     console.log(" I a being called after subscribe");
   }
@@ -57,7 +64,10 @@ constructor(){
       //console.log("Retrieve value " +   this.persistenceService.get('logid',StorageType.SESSION));
       this.pressmessage="Going to fetch data from java";
       // Create an Observable out of a promise
-      const data = from(fetch('http://localhost:8080/api?persname='+this.nameFormControl.value +'&buyval='+this.buyCboxControl.value));
+      //const data = from(fetch('http://3.83.62.24/:8080/api?persname='+this.nameFormControl.value +'&buyval='+this.buyCboxControl.value));
+      const data = from(fetch('http://127.0.0.1:8080/api?persname='+this.nameFormControl.value +'&buyval='+this.buyCboxControl.value));
+
+
       // Subscribe to begin listening for async result
       data.subscribe(resp=>{
 
@@ -70,7 +80,7 @@ constructor(){
 */
       resp.json().then(body=>{
         this.lottoval=body as lottoissue[];
-        this.dataSource = new MatTableDataSource(this.lottoval);
+      //  this.dataSource = new MatTableDataSource(this.lottoval);
       });
 
       },

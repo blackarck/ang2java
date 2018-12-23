@@ -4,6 +4,7 @@ export class lottoissue{
     public lottono:string,
     public issuedt:Date,
     public status:string,
-    public schedid:string
+    public schedid:string,
+    public rundttm:Date,
   ){}
 }

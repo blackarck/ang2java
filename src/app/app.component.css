@@ -1,9 +1,9 @@
-.example-card {
-  max-width: 350px;
-}
 
-.card-bgcolor {
-  background-color: #b1c8ed;
+.card-bgcolor{
+  background-color: #455A64;
+}
+.mat-card{
+  background-color: #37474F;
 }
 table {
   width: 100%;
@@ -11,5 +11,19 @@ table {
 p{
   font-size: 10px;
   margin-block-end:.2em;
-
+  color: #ECEFF1;
+}
+iframe {
+    height:100px;
+}
+button{
+  color: #F9AA33;
+}
+.example-card{
+    background-color: #455A64;
+}
+.lottocard{
+    background-color: #FF9800;
+    color:#37474F;
+    margin-bottom: 10px;
 }
