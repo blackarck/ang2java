@@ -33,8 +33,11 @@
           <button mat-fab  [disabled]=captchaDone (click)="gotophp()">
             <mat-icon>search</mat-icon></button>
             <!--  <div class="g-recaptcha" style="padding-top:10px;" data-callback=""  data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>-->
-            <re-captcha (resolved)="resolved($event)"  class="example-card" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" ></re-captcha>
+              <re-captcha (resolved)="resolved($event)"  class="example-card" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" ></re-captcha>
+          <!--  <re-captcha (resolved)="resolved($event)"  class="example-card" siteKey="6Lc7p4MUAAAAAM0vAZJIgO_f_RIecajJYuiK5Hei" ></re-captcha> -->
+
           </mat-card-actions>
+
           <mat-card-footer>
 
             <!--<re-captcha (resolved)="resolved($event)" siteKey="6LfO3oEUAAAAAAR5qFfmyh9ykwMAOIkB8FxtH8dU"></re-captcha>-->
@@ -89,6 +92,8 @@
 </li>
 </ul>-->
 
+  <p style="padding:5px;">Your tickets last 10 days.</p>
+
 <mat-card *ngFor="let hero of lottoval" class="lottocard">
   <mat-card-content>
     <table>
@@ -100,7 +105,7 @@
 
         </tr>
         <tr>
-          <td>{{ hero.lottono}}</td>
+          <td>{{hero.lottono}}</td>
           <td>{{hero.issuedt}}</td>
           <td>{{hero.schedid}}</td>
           <td>{{hero.status}}</td>

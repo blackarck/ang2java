@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {FormGroup,FormControl, Validators} from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {FormControl, Validators} from '@angular/forms';
 //import { PersistenceService ,StorageType} from 'angular-persistence';
 import {from} from 'rxjs';
 import {lottoissue} from './lottoissue';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatTableDataSource} from '@angular/material';
+import { environment } from '../environments/environment';
 //import 'rxjs/add/observable/fromPromise';
 
 
@@ -36,11 +36,12 @@ export class AppComponent {
      }
 
      resolved1=function(){
-       console.log("resolved1"  );
+      // console.log("resolved1"  );
      }
 
   ngOnInit(){
     //console.log("This is on ng init");
+
   }
 //  constructor(private persistenceService: PersistenceService) {
 constructor(){
@@ -48,10 +49,10 @@ constructor(){
   }
 
 captchapress(){
-  console.log(" capctha was pressed");
+  //console.log(" capctha was pressed");
 }
   callmeAfter(){
-    console.log(" I a being called after subscribe");
+    //console.log(" I a being called after subscribe");
   }
   gotophp(){
     //only pass to java if value is present
@@ -62,26 +63,37 @@ captchapress(){
     //  this.persistenceService.set('logid', ""+ this.nameFormControl.value, {type: StorageType.SESSION});
       //console.log("Go to php-" + this.nameFormControl.value + " buy-"+ this.buyCboxControl.value) ;
       //console.log("Retrieve value " +   this.persistenceService.get('logid',StorageType.SESSION));
-      this.pressmessage="Going to fetch data from java";
+      //this.pressmessage="Going to fetch data from java";
       // Create an Observable out of a promise
-      //const data = from(fetch('http://3.83.62.24/:8080/api?persname='+this.nameFormControl.value +'&buyval='+this.buyCboxControl.value));
-      const data = from(fetch('http://127.0.0.1:8080/api?persname='+this.nameFormControl.value +'&buyval='+this.buyCboxControl.value));
+      const data = from(
+        fetch(environment.callApiUrl + '/api?persname='+this.nameFormControl.value +'&buyval='+this.buyCboxControl.value,{
+          mode:"cors",
+          headers: {
+            "Content-Type": "application/json",
+            // "Content-Type": "application/x-www-form-urlencoded",
+        },
+        })
+
+      );
+      //const data = from(fetch('http://127.0.0.1:8080/api?persname='+this.nameFormControl.value +'&buyval='+this.buyCboxControl.value));
 
 
       // Subscribe to begin listening for async result
       data.subscribe(resp=>{
 
-/*
-        let txtmsg=""
+    /*    let txtmsg="";
         resp.text().then(text=>{
           console.log("Thsi is text-" +text) ;
             this.pressmessage= "return val " + txtmsg;
         });
 */
+
       resp.json().then(body=>{
+        //console.log("fetching data "+ body );
         this.lottoval=body as lottoissue[];
       //  this.dataSource = new MatTableDataSource(this.lottoval);
       });
+
 
       },
      err=>{
